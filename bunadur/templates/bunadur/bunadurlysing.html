@@ -1,0 +1,69 @@
+{% extends 'heim/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block meta_description %}
+Þetta er síða fyrir Báta og búnað skipasölu.  
+Hér er lýsing á búnaði í skip sem er til sölu hjá okkur.
+{% endblock %}
+
+{% block title %}
+{{ bunadur.nafn }}
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'bobstyle.css' %}">
+{% endblock %}
+
+{% block content1 %}
+<h2 align='center'>Upplýsingar um búnað: {{ bunadur.nafn }}</h2>
+<h4 align='center'><i>Síðast uppfært þann {{ bunadur.uppf_dags|date:'d.m.Y' }}</i></h4>
+    <table class="short-table">   
+        <tr><td colspan='2'><img src="{{ bunadur.mynd1.url }}" class='img-responsive'></td></tr>
+        {% if bunadur.mynd2 %}
+        <tr><td colspan='2'><a href="#myndir" class="detail-link">Myndir!</a></td></tr>
+        {% endif %}
+        <tr><td>Tegund búnaðar: </td><td>{{ bunadur.tegundbun }}</td></tr>
+        <tr><td>Staðsetning: </td><td>{{ bunadur.stadsetn }}</td></tr>
+        {% if bunadur.skipti %}
+        <tr><td>Skipti: </td><td>{{ bunadur.skipti }}</td></tr>
+        {% endif %}
+        <tr><td>Ásett verð (ISK): </td><td>{{ bunadur.verd_bun|format_currency|default:"Óskað er eftir tilboði í búnaðinn!" }}</td></tr>
+        <tr><td colspan='2'><a href='{% url 'bunadurfyrirspurn_sida' bunadur.slug %}'class="detail-link">Fyrirspurn um búnað {{ bunadur.nafn }}</a></td></tr>
+    </table>
+    <table class="short-table">
+        <tr><td colspan="2"><h3>Lýsing:</h3></td></tr>
+        <tr><td colspan="2">{{ bunadur.lysing }}</td></tr>
+    </table>
+    {% include 'includes/framogtilbaka.html' %}     
+    <script src="{% static 'scripts/js.js' %}"></script>
+{% endblock %}
+ 
+{% block content2 %}
+{% if bunadur.mynd2 %}
+    <table align='center' class="smooth-table">
+        <tr><td colspan="2"><h3 id='myndir'>Myndir:</h3> </td></tr>
+        {% if bunadur.mynd2 %}
+        <tr><td><img src='{{ bunadur.mynd2.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if bunadur.mynd3 %}
+        <tr><td><img src='{{ bunadur.mynd3.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if bunadur.mynd4 %}
+        <tr><td><img src='{{ bunadur.mynd4.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if bunadur.mynd5 %}
+        <tr><td><img src='{{ bunadur.mynd5.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        <tr><td>{% if bunadur.mynd6 %}<img src='{{ bunadur.mynd6.url }}' class='img-responsive'>{% else %}{% endif %}</td></tr>
+    </table>
+    {% include 'includes/framogtilbaka.html' %}  
+{% endif %}
+{% endblock %}
+
+{% block content3 %}
+    <table class="short-table">
+        <tr><td ><h3>Fyrirspurn:</h3></td></tr>
+        <tr><td><a href='{% url 'bunadurfyrirspurn_sida' bunadur.slug %}'class="detail-link">Sendu inn fyrirspurn um ofangreindan búnað: {{ bunadur.nafn }}!</a></td></tr>
+    </table>
+{% endblock %}

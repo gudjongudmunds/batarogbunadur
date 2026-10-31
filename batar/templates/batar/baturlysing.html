@@ -1,0 +1,236 @@
+{% extends 'heim/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block meta_description %}
+Þetta er síða fyrir Báta og búnað skipasölu.  
+Hér er lýsing á bát sem er til sölu hjá okkur.
+Allar upplýsingar um vél, stjórntæki í brú, ganghraða, keyrslu vélar, verð, og fleira.
+{% endblock %}
+
+{% block title %}
+{{ batar.nr }}-{{ batar.nafn }}
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'bobstyle.css' %}">
+{% endblock %}
+
+{% block content1 %}
+<h2 align='center'>Upplýsingar um bátinn {{ batar.nafn }}: </h2>
+    <table class="short-table">   
+        <tr><td colspan='2'><img src="{{ batar.mynd1.url }}" class='img-responsive'></td></tr>
+        <tr><td colspan='2'><a href="#myndir" class="detail-link">Fara í myndaalbum!</a></td></tr>
+        <tr><td><i>Síðast uppfært (dags.):</i></td><td><i>{{ batar.uppf_dags|date:'d.m.Y' }}</i></td></tr>
+        <tr><td><b>Skipaskrárnúmer:</b> </td><td><b>{{ batar.nr }}</b></td></tr>
+        <tr><td>Tegund: </td><td>{{ batar.tegund }}</td></tr>
+        <tr><td>Skipasmíðastöð: </td><td>{{ batar.smidast|default:"Ekki skráð" }}</td></tr>
+        <tr><td>Árgerð báts: </td><td>{{ batar.arg_bat|default:"Ekki skráð" }}</td></tr>
+        <tr><td>Brúttó tonn: </td><td>{{ batar.br_tonn|decimal_comma}} br.tonn</td></tr>
+        <tr><td>Skráð lengd/mesta lengd: </td><td>{{ batar.lengd_bat|decimal_comma }} m. / {{ batar.mestlengd_bat|decimal_comma }} m. </td></tr>
+        <tr><td>Skráð breidd/dýpt:: </td><td>{{ batar.breidd_bat|decimal_comma }} m. / {{ batar.dypt_bat|decimal_comma }} m. </td></tr>
+        <tr><td>Efni í bol: </td><td>{{ batar.efnibol_bat }}</td></tr>
+        <tr><td>Heimahöfn: </td><td>{{ batar.heimahofn }}</td></tr>
+        {% if batar.svaedi %}
+        <tr><td>Strandveiðisvæði: </td><td>{{ batar.svaedi }}</td></tr>
+        {% endif %}
+        <tr><td colspan='2'><a href='{% url 'baturfyrirspurn_sida' batar.slug %}'class="detail-link" >Sendu inn fyrirspurn um ofangreindan bát nr. {{ batar.nr }}!</a></td></tr>
+    </table>
+    <table class="short-table">
+        <tr><td colspan="2"><h3>Vélbúnaður:</h3></td></tr>
+        <tr><td>Framleiðandi: </td><td>{{ batar.vel }}</td></tr>
+        {% if batar.vel_arg %}
+        <tr><td>Árgerð: </td><td>{{ batar.vel_arg }}</td></tr>
+        {% endif %}
+        {% if batar.vel_afl %}
+        <tr><td>Afl vélar: </td><td>{{ batar.vel_afl }}</td></tr>
+        {% endif %}
+
+        {% if batar.hradi_bat %}
+        <tr>
+            <td>Hraði (gangur): </td>
+            <td>
+                {{ batar.hradi_bat }}
+                {% if batar.hradi_bat.hradi_bat == 'Hrað-' %}
+                gengur *
+                {% elif batar.hradi_bat.hradi_bat == 'Hæg-' %}
+                gengur *
+                {% elif batar.hradi_bat.hradi_bat == 'Meðal-' %}
+                gangur *
+                {% endif %}
+            </td>
+        </tr>
+        {% endif %}
+
+        {% if batar.hradi_bat %}
+        <tr><td colspan='2' style="text-align: right; font-size: smaller;">
+            <i>
+            {% if batar.hradi_bat.hradi_bat == 'Hrað-' %} * Á við um báta sem ganga einhvers staðar á bilinu 18 mílur per klst eða meira.  Upplýsingar um ganghraða koma frá seljanda.
+            {% elif batar.hradi_bat.hradi_bat == 'Hæg-' %} * Á við um báta sem ganga einhvers staðar á bilinu 5 til 9 mílur per klst.  Upplýsingar um ganghraða koma frá seljanda.
+            {% elif batar.hradi_bat.hradi_bat == 'Meðal-' %} * Á við um báta sem ganga einhvers staðar á bilinu 10 til 17 mílur per klst.  Upplýsingar um ganghraða koma frá seljanda.
+            {% endif %}
+            </i>
+            </td>
+        </tr>
+        {% endif %}
+        {% if batar.keyrsla_vel %}
+        <tr><td>Keyrsla ca. (klst): </td><td>{{ batar.keyrsla_vel }}</td></tr>
+        {% endif %}
+        {% if batar.lys_vel %}
+        <tr><td>Annað: </td><td>{{ batar.lys_vel }}</td><tr>
+        {% endif %}
+    </table>
+    <table class="short-table">
+        <tr><td colspan="2"><h3>Tækjabúnaður:</h3></td></tr>
+        <tr><td>Bjargbátur: </td><td>{{ batar.taeki_bjarg }}</td></tr>
+        {% if batar.taeki_dypt %}
+        <tr><td>Dýptarmælir: </td><td>{{ batar.taeki_dypt }}</td></tr>
+        {% endif %}
+        {% if batar.taeki_gps %}
+        <tr><td>GPS: </td><td>{{ batar.taeki_gps }}</td></tr>
+        {% endif %}
+        {% if batar.taeki_plotter %}
+        <tr><td>Plotter: </td><td>{{ batar.taeki_plotter }}</td></tr>
+        {% endif %}
+        {% if batar.taeki_sjalfst %}
+        <tr><td>Sjálfstýring: </td><td>{{ batar.taeki_sjalfst }}</td></tr>
+        {% endif %}
+        {% if batar.taeki_talst %}
+        <tr><td>Talstöð: </td><td>{{ batar.taeki_talst }}</td></tr>
+        {% endif %}
+        {% if batar.taeki_rad %}
+        <tr><td>Radar: </td><td>{{ batar.taeki_rad }}</td></tr>
+        {% endif %}
+        {% if batar.taeki_tolva %}
+        <tr><td>Tölva: </td><td>{{ batar.taeki_tolva }}</td></tr>
+        {% endif %}
+        {% if batar.taeki_siglhugb %}
+        <tr><td>Hugbúnaður: </td><td>{{ batar.taeki_siglhugb }}</td></tr>
+        {% endif %}
+        {% if batar.taeki_ais %}
+        <tr><td>AIS: </td><td>{{ batar.taeki_ais }}</td></tr>
+        {% endif %}
+        {% if batar.taeki_annad %}
+        <tr><td>Annað: </td><td>{{ batar.taeki_annad }}</td></tr>
+        {% endif %}
+    </table>
+    <table class="short-table">
+        <tr><td colspan="2"><h3>Lýsing:</h3></td></tr>
+        <tr><td colspan="2">{{ batar.lys_annad }}</td></tr>
+        <tr><td>Gerð báts: </td><td>{{ batar.gerd_bat|default:"Sjá skipasmíðastöð" }}</td></tr>
+        {% if batar.stadsetn %}
+        <tr><td>Staðsetning: </td><td>{{ batar.stadsetn|default:"Ekki skráð" }}</td></tr>
+        {% endif %}
+        {% if batar.skipti %}
+        <tr><td>Skipti: </td><td>{{ batar.skipti }}</td></tr>
+        {% endif %}
+        <tr><td><b>Ásett verð (ISK):</b></td><td><b>{{ batar.verd_bat|default:"Óskað er eftir tilboði í bátinn!"|format_number }}</b></td></tr>
+    </table>
+    {% include 'includes/framogtilbaka.html' %}       
+    <script src="{% static 'scripts/js.js' %}"></script>
+    <table class="adaptive-table">
+        <tr><td colspan="2"><h3>Opinberar upplýsingar af vef (copy/paste):</h3> </td></tr>
+        <tr><td>Samgöngustofa: </td><td>{{ batar.sgs|default:"Ekki skráð" }}</td></tr>
+        {% if batar.fiskistofa %}
+        <tr><td>Fiskistofa: </td><td>{{ batar.fiskistofa }}</td></tr>
+        {% endif %}
+    </table>
+{% endblock %}
+ 
+{% block content2 %}
+    <table align='center' class="smooth-table">
+        <tr><td colspan="2"><h3 id='myndir'>Myndir:</h3> </td></tr>
+        {% if batar.mynd1 %}
+        <tr><td><img src='{{ batar.mynd1.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd2 %}
+        <tr><td><img src='{{ batar.mynd2.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+    </table>
+        {% if batar.mynd5 %}
+        {% include 'includes/framogtilbaka.html' %}   
+        {% endif %}
+    <table align='center' class="smooth-table">   
+        {% if batar.mynd3 %}
+        <tr><td><img src='{{ batar.mynd3.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd4 %}
+        <tr><td><img src='{{ batar.mynd4.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd5 %}
+        <tr><td><img src='{{ batar.mynd5.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd6 %}
+        <tr><td><img src='{{ batar.mynd6.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd7 %}
+        <tr><td><img src='{{ batar.mynd7.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd8 %}
+        <tr><td><img src='{{ batar.mynd8.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd9 %}
+        <tr><td><img src='{{ batar.mynd9.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd10 %}
+        <tr><td><img src='{{ batar.mynd10.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd11 %}
+        <tr><td><img src='{{ batar.mynd11.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd12 %}
+        <tr><td><img src='{{ batar.mynd12.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd13 %}
+        <tr><td><img src='{{ batar.mynd13.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd14 %}
+        <tr><td><img src='{{ batar.mynd14.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd15 %}
+        <tr><td><img src='{{ batar.mynd15.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd16 %}
+        <tr><td><img src='{{ batar.mynd16.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd17 %}
+        <tr><td><img src='{{ batar.mynd17.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd18 %}
+        <tr><td><img src='{{ batar.mynd18.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd19 %}
+        <tr><td><img src='{{ batar.mynd19.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+        {% if batar.mynd20 %}
+        <tr><td><img src='{{ batar.mynd20.url }}' class='img-responsive'></td></tr>
+        {% endif %}
+    </table>
+    {% include 'includes/framogtilbaka.html' %}   
+{% endblock %}
+
+{% block content3 %}
+{% if batar.soluyfirl %}
+<table class="short-table">
+    <tr><td><h3>Söluyfirlit:</tr>
+    <tr><td><a href="{{ batar.soluyfirl.url }}" download>Sæktu söluyfirlit fyrir bátinn {{ batar.nafn }} hér!</a></td></tr>
+</table>
+{% endif %}
+<table class="short-table">
+    <tr><td><h3>Fyrirspurn:</h3></td></tr>
+    <tr><td><a href='{% url 'baturfyrirspurn_sida' batar.slug %}' class="detail-link">Sendu inn fyrirspurn um bátinn {{ batar.nafn }} hér!</a></td></tr>
+</table>
+<table class="short-table">
+    <tr><td><h3>Fyrirvari skipasala:</h3></td></tr>
+    <tr><td style="font-size: smaller;">Skipasali vill setja fyrirvara um nákvæmni upplýsinga sem fram koma almennt í kynningu á skipum.  Nýrri upplýsingar kunna 
+        að liggja fyrir um skipið sem komið hafa fram eftir skráningu þess.  Skipasali hefur ekki prufað skipið sjálfur og þar með byggja upplýsingar 
+        sem fram koma, t.a.m. um ástand skips og búnaðar, ganghraða, keyrslu vélar, afl vélar, o.fl., á upplýsingum frá seljanda.  Ástandsskoðun 
+        að hálfu þar til bærra sérfræðinga á vél, tækjum og búnaðir skipsins, liggur ekki fyrir hjá skipasala.</td></tr>
+        <tr><td style="font-size: smaller;">Skipasali tekur fram að ofangreind kynning er ekki söluyfirlit fyrir skipið.  Ef ekki er tengill hér á síðunni við söluyfirlit 
+        (pdf skjal) er hægt að óska eftir söluyfirliti frá skipasala með því að senda fyrirspurn.</td></tr>
+        <tr><td style="font-size: smaller;">Jafnframt skal bent á að misræmi kann að vera í skráningu á afli véla. Afl véla er skráð hjá Samgöngustofu skv.reglugerð nr. 520/2006 
+        þar sem m.a. kemur fram: 'Þegar skráð er afl véla, skal skrá það í kW og miða við mesta stöðuga álag sem framleiðandi gefur upp fyrir umrædda 
+        vélargerð og árgerð.'  Misræmi kann því að vera á afli vélar skv. upplýsingum frá Samgöngustofu og því afli sem gefið er upp á vélaspjaldi 
+        og/eða að hálfu seljanda.</td></tr>
+</table>
+{% endblock %}

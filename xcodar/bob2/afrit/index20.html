@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+Bátar og búnaður
+{% endblock %}
+
+{% block css_files %}
+{% endblock %}
+
+{% block content %}
+  <h2>Nýjustu eignir</h2>
+    <table>
+    {% for ski in skips %}
+      <tr>
+      <td>{{ ski.nr }}</td><td><a href='{{ ski.get_absolute_url }}'>{{ ski.nafn }}</a></td><td>{{ ski.stadur }}</td><td><p>Sjálfstýring:</p>{{ ski.sjalfstyring }}</td>
+    </tr>
+    {% endfor %} 
+    </table>
+  <h3>Fjöldi skipa á skrá: {{ fjskip }}</h3>
+</section>
+{% endblock %}

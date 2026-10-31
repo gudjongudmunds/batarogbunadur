@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ object.titill }}
+{% endblock %}
+{% block css_files %}
+{% endblock %}
+{% block content %}
+<section>
+    <h2> {{ object.titill }}</h2>
+    <h2>Myndir:</h2>
+    <article>
+       <img src='{% static 'gallery/images/'|add:object.mynd1 %}' alt='{{ object.titill }}'/>
+    </article>
+    <article>
+        <img src='{% static 'gallery/images/'|add:object.mynd2 %}' alt='{{ object.titill }}'/>
+    </article>
+    <article>
+        <img src='{% static 'gallery/images/'|add:object.mynd3 %}' alt='{{ object.titill }}'/>
+    </article>
+    <article>
+        <img src='{% static 'gallery/images/'|add:object.mynd4 %}' alt='{{ object.titill }}'/>
+    </article>
+</section>
+{% endblock %}

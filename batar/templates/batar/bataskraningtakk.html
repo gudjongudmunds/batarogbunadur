@@ -1,0 +1,30 @@
+{% extends 'heim/base.html' %}
+{% load static %}
+
+{% block meta_description %}
+Þetta er síða fyrir Báta og búnað skipasölu.  
+Takk fyrir að skrá bát á söluskrá hjá okkur.
+{% endblock %}
+
+{% block title %}
+Takk fyrir skráninguna
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'bobstyle.css' %}">
+{% endblock %}
+   
+{% block content1 %}
+<h1 align='center'>Takk fyrir skráninguna!</h1>
+    <table class="short-table"> 
+    <tr>
+        <td><h4>ATH!  Skipasali fer yfir skráninguna áður en bátur er skráður á söluskrá, m.a. þarf skipasali umboð frá eiganda áritað með rafrænum skilríkjum.  Skipasali verður í sambandi vegna þessa.</h4></td>
+    </tr>
+</table>
+{% endblock %}
+
+{% block content2 %}
+{% endblock %}
+
+{% block content3 %}
+{% endblock %}

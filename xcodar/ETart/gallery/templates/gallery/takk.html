@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Takk fyrir
+{% endblock %}
+{% block css_files %}
+    <link rel='stylesheet' href='{% static 'gallery/post.css' %}'/>
+    <link rel='stylesheet' href='{% static 'gallery/all-posts.css' %}'/>
+{% endblock %}
+{% block content %}
+<section id='all-posts'>
+    <h2>Takk fyrir athugasemdirnar!</h2>
+    <p>{{ skilabod }} </p>
+</section>
+{% endblock %}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listi fyrir báta</title>
+</head>
+<body>
+    <h1>Bátalisti</h1>
+    <ul>
+        {% for bat in object_list %}
+        <li><a href='{% url 'boat_detail' bat.pk %}'>{{ bat.name }}</a></li>
+        {% endfor %}
+    </ul> 
+</body>
+</html>

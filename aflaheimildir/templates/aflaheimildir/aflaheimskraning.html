@@ -1,0 +1,34 @@
+{% extends 'heim/base.html' %}
+{% load static %}
+
+{% block meta_description %}
+Þetta er síða fyrir Báta og búnað skipasölu.  
+Hér er hægt að skrá aflaheimildir á þorski, ýsu, ufsa, steinbít, grásleppu, kolmuna, og fleira til sölu hjá okkur.  
+Bæði aflamark, krókaaflamark, aflahlutdeild og krókaaflahlutdeild.
+{% endblock %}
+
+{% block title %}
+Skráning aflaheimilda
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'bobstyle.css' %}">
+{% endblock %}
+
+{% block content1 %}
+<div class="form-container">
+    <h3>Skráðu aflaheimildir:</h3>
+    <form method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>Send</button>
+    </form>
+    <h5>{{ message_aflah }}</h5>
+</div>
+{% endblock %}
+
+{% block content2 %}
+{% endblock %}
+
+{% block content3 %}
+{% endblock %}

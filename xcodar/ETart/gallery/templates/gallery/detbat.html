@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ object.titill }}
+{% endblock %}
+{% block css_files %}
+{% endblock %}
+{% block content %}
+<section>
+    <h2> {{ object.titill }}</h2>
+        <article>
+            <address>Eftir Elínu Tryggva</address>
+                <div>
+                    <p><a href='{% url 'myndir_sida' object.pk %}'>{{ object.kynning }}</a></p>
+                    <p>{{ object.date }}</p>
+                </div>
+        </article>
+</section>
+<main>
+    <p>Um verkið: {{ object.lysing }}</p>
+    <br>
+    <h2>Myndir:</h2>
+    
+</main>
+{% endblock %}

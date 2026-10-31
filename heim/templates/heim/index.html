@@ -1,0 +1,134 @@
+{% extends 'heim/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block meta_description %}
+Þetta er upphafssíða fyrir Báta og búnað skipasölu.  
+Bátar og búnaður er um 50 ára gömul skipasala.  
+Við seljum einnig búnað og aflaheimildir.
+{% endblock %}
+
+{% block title %}
+Heim - forsíða
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'bobstyle.css' %}">
+{% endblock %}
+   
+{% block content1 %}
+<h1 align='center'>Nýjustu eignir af söluskrá ..</h1>
+<h3 align='center'>Bátar:</h3>
+    <table class="updated-compact-table">
+        <tr>
+            {% for batar in batar_list %}
+            <td class="clickable-cell">
+                <table>
+                    <tr>
+                        <th rowspan="7"><img src="{{ batar.lmynd.url }}"></th>
+                        <td><a href="{% url 'baturlysing_sida' batar.slug %}" class="table-link">{{ batar.nafn }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>{{ batar.tegund }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ batar.gerd_bat }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ batar.br_tonn|decimal_comma }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ batar.lengd_bat|decimal_comma }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ batar.hradi_bat }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ batar.verd_bat|format_number|default:'Tilboð!' }}</td>
+                    </tr>
+                </table>
+            </td>
+            {% endfor %}
+        </tr>
+        <tr><td><a href='{% url 'baturlisti_sida' %}' class="table-link"> .. meira ..</a></td></tr>
+    </table>
+    <script src="{% static 'scripts/js.js' %}"></script>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var cells = document.querySelectorAll('.updated-compact-table .clickable-cell');
+        cells.forEach(function(cell) {
+            cell.addEventListener('click', function() {
+                window.location = this.querySelector('a.table-link').href;
+            });
+        });
+    });    
+</script>
+</body>
+{% endblock %}
+
+{% block content2 %}
+{% if bunadur_list %} 
+<h3 align='center'>Búnaður:</h3>
+<table class="updated-compact-table">
+    <tr>
+    {% for bunadur in bunadur_list %}        
+    <td class="clickable-cell">
+        <table>
+                <tr>
+                    <th rowspan="5"><img src="{{ bunadur.lmynd.url }}"></th>
+                </tr>
+                <tr>
+                    <td><a href='{% url 'bunadurlysing_sida' bunadur.slug %}' class="table-link">{{ bunadur.nafn }}</a></td>
+                </tr>
+                <tr>
+                    <td>{{ bunadur.tegundbun }}</td>
+                </tr>
+                <tr>
+                    <td>{{ bunadur.stadsetn }}</td>
+                </tr>
+                <tr>
+                    <td>{{ bunadur.verd_bun|format_number|default:'Tilboð!' }}</td>
+                </tr>
+        </table>
+    </td>
+    {% endfor %}
+    </tr>
+    <tr><td><a href='{% url 'bunadurlisti_sida' %}' class="table-link"> .. meira ..</a></td></tr>
+</table>
+{% else %}
+
+{% endif %}
+{% endblock %}
+
+{% block content3 %}
+{% if aflaheim_list %} 
+<h3 align='center'>Aflaheimildir:</h3>
+<table class="updated-compact-table">
+    <tr>
+    {% for aflaheim in aflaheim_list %}       
+    <td class="clickable-cell">
+        <table>
+                <tr>
+                    <th rowspan="5"><img src="{{ aflaheim.lmynd.url }}"></th>
+                    <td><a href='{% url 'aflaheimlysing_sida' aflaheim.slug %}'>{{ aflaheim.nafn }}</a></td>
+                </tr>
+                <tr>
+                    <td>{{ aflaheim.tegundaflah }}</td>
+                </tr>
+                <tr>
+                    <td>{{ aflaheim.tegsjavaraf }}</td>
+                </tr>
+                <tr>
+                    <td>{{ aflaheim.verdsamt|format_number|default:'Tilboð!' }}</td>
+                </tr>
+        </table>
+    </td>
+    {% endfor %}
+    </tr>
+    <tr><td><a href='{% url 'aflaheimlisti_sida' %}' class="table-link"> .. meira ..</a></td></tr>
+</table>
+{% else %}
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'heim/base.html' %}
+{% load static %}
+
+{% block meta_description %}
+Þetta er síða fyrir Báta og búnað skipasölu.  
+Takk fyrir að senda inn fyrirspurn um búnað.
+{% endblock %}
+
+{% block title %}
+Takk fyrir fyrirspurnina
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'bobstyle.css' %}">
+{% endblock %}
+   
+{% block content1 %}
+<h1 align='center'>Takk fyrir fyrirspurnina á búnaði!</h1>
+    <table class="short-table">
+        <tr>
+            <td><h4>Við svörum eins fljótt og við getum.</h4></td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block content2 %}
+{% endblock %}
+
+{% block content3 %}
+{% endblock %}

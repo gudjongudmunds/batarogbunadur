@@ -1,0 +1,749 @@
+/* styles.css */
+/* static/styles.css */
+#cookie-notice {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+#cookie-notice p {
+    display: inline;
+    margin-right: 10px;
+}
+
+#accept-cookies {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+a {
+    color: #009879; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make text bold */
+}
+
+a:hover {
+    color: #007960; /* Link color on hover */
+    text-decoration: underline; /* Underline on hover */
+}
+
+
+.form-container {
+    width: 100%;
+    max-width: 600px; /* Adjust the max-width as needed */
+    margin: 0 auto; /* Center the form */
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Form heading styles */
+.form-container h3 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.form-container h5 {
+    text-align: center;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Form field styles */
+.form-container form p {
+    margin-bottom: 15px; /* Space between fields */
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-container input[type="text"], 
+.form-container input[type="email"], 
+.form-container input[type="file"], 
+.form-container textarea, 
+.form-container select {
+    width: calc(100% - 22px); /* Adjust width accounting for padding and border */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+/* Submit button styles */
+.form-container button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745; /* Green button background color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1em;
+}
+
+.form-container button[type="submit"]:hover {
+    background-color: #218838; /* Darken the green color on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 15px;
+    }
+
+    .form-container form p {
+        margin-bottom: 10px;
+    }
+
+    .form-container button[type="submit"] {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+}
+
+/* Gjaldskrá, um okkur, lýsing á vöru */
+.short-table {
+    table-layout: fixed; /* Ensures equal width for both left and right <td> */
+    width: 100%;
+    max-width: 860px; /* Set the maximum width of the table */
+    margin: 20px auto; /* Center the table horizontally and add vertical margin */
+    border-collapse: collapse; /* Remove gaps between table cells */
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9; /* Light background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for the table */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensure rounded corners show */
+}
+
+.short-table td {
+    padding: 8px; /* Padding inside table cells */
+    text-align: left; /* Left align text by default */
+    border-bottom: 1px solid #ddd; /* Light border between rows */
+    vertical-align: top; /* Align the cells to the top */
+    word-wrap: break-word; /* Ensure long words break and wrap within the cell */
+    width: 50%; /* Ensure equal width for left and right <td> */
+}
+
+/* Align text to the right for the left <td> and to the left for the right <td> */
+.short-table tr td:first-child {
+    text-align: right; /* Align text to the right for the left <td> */
+}
+
+.short-table tr td:last-child {
+    text-align: left; /* Align text to the left for the right <td> */
+}
+
+.short-table h1, .short-table h3 {
+    margin: 0; /* Remove default margin for headings */
+    padding: 10px 0; /* Add padding to the heading */
+    font-weight: bold; /* Bold text for headings */
+}
+
+@media (max-width: 768px) {
+    .short-table {
+        width: 100%; /* Adjust width to 100% for smaller screens */
+    }
+
+    .short-table td {
+        padding: 6px; /* Further reduce padding for small screens */
+    }
+}
+
+
+/* Tafla fyrir söluskrá */
+.compact-table {
+    width: 100%;
+    max-width: 860px;
+    border-collapse: collapse;
+    padding: 2px;
+    margin: 0 auto 5px auto; /* Reduce margin */
+    font-size: 0.9em; /* Smaller font size */
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* Lighter box shadow */
+}
+
+.compact-table thead tr {
+    background-color: #f4f3ad;
+    color: #ffffff;
+    text-align: left;
+    line-height: 1; /* Reduce line height */
+    height: 30px; /* Adjust the height of the header row */
+}
+
+.compact-table th, .compact-table td {
+    padding: 6px 8px; /* Reduce padding for compact design */
+}
+
+.compact-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    transition: background-color 0.3s;
+}
+
+.compact-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.compact-table tbody tr:hover {
+    background-color: #d1e7dd; /* Change to your preferred hover color */
+}
+
+.compact-table .table-image {
+    height: 60px; /* Adjust as needed */
+    width: auto;
+    border-radius: 5px;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .compact-table, .detail-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .compact-table th, .compact-table td {
+        padding: 6px 6px; /* Further reduce padding for small screens */
+    }
+}
+
+/* Tafla fyrir bunaður */
+.compact-table-bunadur {
+    width: 100%;
+    max-width: 860px;
+    border-collapse: collapse;
+    padding: 2px;
+    margin: 0 auto 5px auto; /* Reduce margin */
+    font-size: 0.9em; /* Smaller font size */
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* Lighter box shadow */
+}
+
+.compact-table-bunadur thead tr {
+    background-color: #e6ccc5;
+    color: #ffffff;
+    text-align: left;
+    line-height: 1; /* Reduce line height */
+    height: 30px; /* Adjust the height of the header row */
+}
+
+.compact-table-bunadur th, .compact-table-bunadur td {
+    padding: 6px 8px; /* Reduce padding for compact design */
+}
+
+.compact-table-bunadur tbody tr {
+    border-bottom: 1px solid #dddddd;
+    transition: background-color 0.3s;
+}
+
+.compact-table-bunadur tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.compact-table-bunadur tbody tr:hover {
+    background-color: #d1e7dd; /* Change to your preferred hover color */
+}
+
+.compact-table-bunadur .table-image {
+    height: 60px; /* Adjust as needed */
+    width: auto;
+    border-radius: 5px;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .compact-table-bunadur, .detail-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .compact-table-bunadur th, .compact-table-bunadur td {
+        padding: 6px 6px; /* Further reduce padding for small screens */
+    }
+}
+
+
+/* Tafla fyrir aflaheim */
+.compact-table-aflah {
+    width: 100%;
+    max-width: 860px;
+    border-collapse: collapse;
+    padding: 2px;
+    margin: 0 auto 5px auto; /* Reduce margin */
+    font-size: 0.9em; /* Smaller font size */
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* Lighter box shadow */
+}
+
+.compact-table-aflah thead tr {
+    background-color: #c8f2c6;
+    color: #ffffff;
+    text-align: left;
+    line-height: 1; /* Reduce line height */
+    height: 30px; /* Adjust the height of the header row */
+}
+
+.compact-table-aflah th, .compact-table-aflah td {
+    padding: 6px 8px; /* Reduce padding for compact design */
+}
+
+.compact-table-aflah tbody tr {
+    border-bottom: 1px solid #dddddd;
+    transition: background-color 0.3s;
+}
+
+.compact-table-aflah tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.compact-table-aflah tbody tr:hover {
+    background-color: #d1e7dd; /* Change to your preferred hover color */
+}
+
+.compact-table-aflah .table-image {
+    height: 60px; /* Adjust as needed */
+    width: auto;
+    border-radius: 5px;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .compact-table-aflah, .detail-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .compact-table-aflah th, .compact-table-aflah td {
+        padding: 6px 6px; /* Further reduce padding for small screens */
+    }
+}
+
+/* Tafla í lista fyrir báta til að leita (form) */
+
+.search-table {
+    align-items: center;
+    width: 100%;
+    margin: 5px 0;  /* Further reduces space above and below the table */
+    text-align: center;
+}
+
+.search-table form {
+    display: inline-block;
+    background-color: #f9f9f9;  /* Light grey background for the form */
+    padding: 2px;  /* Further reduces padding */
+    border-radius: 3px;  /* Smaller rounded corners */
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);  /* Lighter shadow for a more compact feel */
+}
+
+.search-table input[type="text"] {
+    padding: 2px;  /* Further reduces padding */
+    font-size: 0.85em;  /* Slightly smaller font size */
+    border: 1px solid #ccc;
+    border-radius: 3px;  /* Smaller rounded corners */
+    margin-right: 3px;  /* Less space between input and button */
+    width: 120px;  /* Adjust width to be narrower */
+}
+
+.search-table button[type="submit"] {
+    padding: 3px 7px;  /* Further reduces padding */
+    font-size: 0.85em;  /* Slightly smaller font size */
+    color: #fff;
+    background-color: #34553c;  /* Green-ish color */
+    border: none;
+    border-radius: 3px;  /* Smaller rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-table button[type="submit"]:hover {
+    background-color: #218838;  /* Darker green on hover */
+}
+
+.search-table button[type="submit"]:active {
+    background-color: #1e7e34;  /* Even darker green on click */
+}
+
+
+.adaptive-table {
+    table-layout: auto; /* Allows the left <td> to adjust its width based on content */
+    width: 100%;
+    max-width: 860px; /* Set the maximum width of the table */
+    margin: 20px auto; /* Center the table horizontally and add vertical margin */
+    border-collapse: collapse; /* Remove gaps between table cells */
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9; /* Light background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for the table */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensure rounded corners show */
+}
+
+.adaptive-table td {
+    padding: 8px; /* Padding inside table cells */
+    border-bottom: 1px solid #ddd; /* Light border between rows */
+    vertical-align: top; /* Align the cells to the top */
+    word-wrap: break-word; /* Ensure long words break and wrap within the cell */
+}
+
+/* Target the left <td> to adjust its width based on the content */
+.adaptive-table tr td:first-child {
+    white-space: nowrap; /* Prevent text from wrapping */
+    width: auto; /* Make the width auto-adjust to the content */
+    text-align: right; /* Align text to the right for better separation */
+}
+
+/* Ensure the right <td> aligns text to the left */
+.adaptive-table tr td:last-child {
+    text-align: left; /* Align text to the left for the right <td> */
+}
+
+.adaptive-table h1, .adaptive-table h3 {
+    margin: 0; /* Remove default margin for headings */
+    padding: 10px 0; /* Add padding to the heading */
+    font-weight: bold; /* Bold text for headings */
+}
+
+@media (max-width: 768px) {
+    .adaptive-table {
+        width: 100%; /* Adjust width to 100% for smaller screens */
+    }
+
+    .adaptive-table td {
+        padding: 6px; /* Further reduce padding for small screens */
+    }
+}
+
+.smooth-table {
+    max-width: 860px; /* Set the maximum width of the table */
+    width: 100%;
+    margin: 20px auto; /* Center the table horizontally and add vertical margin */
+    border-collapse: collapse; /* Remove gaps between table cells */
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9; /* Light background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for the table */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensure rounded corners show */
+}
+
+.smooth-table td {
+    padding: 8px; /* Padding inside table cells */
+    text-align: left; /* Left align text */
+    vertical-align: top; /* Align the cells to the top */
+    word-wrap: break-word; /* Ensure long words break and wrap within the cell */
+}
+
+/* Remove borders and lines between <tr> elements */
+.smooth-table tr {
+    border: none; /* Remove border for table rows */
+}
+
+.smooth-table h1, .smooth-table h3 {
+    margin: 0; /* Remove default margin for headings */
+    padding: 10px 0; /* Add padding to the heading */
+    font-weight: bold; /* Bold text for headings */
+}
+
+@media (max-width: 768px) {
+    .smooth-table {
+        width: 100%; /* Adjust width to 100% for smaller screens */
+    }
+
+    .smooth-table td {
+        padding: 6px; /* Further reduce padding for small screens */
+    }
+}
+
+
+/* Table banner styles */
+.banner-table {
+    width: 100%;
+    max-width: 860px; /* Set the maximum width of the table */
+    margin: 2px auto; /* Center the table and add vertical margin */
+    border-collapse: collapse; /* Remove gaps between table cells */
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff; /* Light background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for the table */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensure rounded corners show */
+    padding: 0px;
+}
+
+/* Table cells */
+.banner-table td {
+    padding: 4px; /* Padding inside table cells */
+    text-align: center; /* Center align text */
+    vertical-align: middle; /* Center align vertically */
+}
+
+/* Right align for the last td */
+.banner-table .align-right {
+    text-align: right;
+}
+
+
+/* Inner table */
+.inner-content-table {
+    padding: 2px;
+    margin: 2px;
+    max-width: 860px;
+    width: 100%;
+    border-collapse: collapse; /* Remove gaps between table cells */
+}
+
+.inner-content-table td, .inner-content-table th {
+    padding: 2px; /* Padding inside inner table cells */
+    margin: 2px;
+    line-height: 1,0;
+    text-align: left; /* Left align text for better readability */
+}
+
+.inner-content-table tr { 
+    min-height: 5px; /* Set minimum height for table rows */ }
+
+/* Links */
+/* styles.css */
+.nav-button {
+    padding: 4px 10px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.button-green {
+    background-color: #476f50;
+}
+
+.button-green:hover {
+    background-color: #3b463e;
+}
+
+.button-blue {
+    background-color: #3f5d7d;
+}
+
+.button-blue:hover {
+    background-color: #3d546d;
+}
+
+
+
+.nav-bar {
+    width: 100%;
+    max-width: 860px; /* Set the maximum width of the table */
+    margin: 0 auto; /* Center the table */
+    background-color: #ffffff;
+    padding: 5px 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Table cells */
+.nav-bar td {
+    padding: 4px;
+}
+
+/* Nav styles */
+.nav-bar nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-bar td:first-child nav {
+    justify-content: flex-start;
+}
+
+.nav-bar td:last-child nav {
+    justify-content: flex-end;
+}
+
+/* Links */
+.nav-bar a {
+    text-decoration: none;
+    color: #009879;
+    font-weight: bold;
+    padding: 0 18px;
+    transition: color 0.3s;
+}
+
+.nav-bar a:hover {
+    color: #007960;
+    text-decoration: underline;
+}
+
+.nav-bar a.active {
+    color: #ffffff; /* Active link text color */
+    background-color: #007960; /* Active link background color */
+    padding: 1px 8px;
+    border-radius: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .nav-bar {
+        width: 100%; /* Adjust width to 100% for smaller screens */
+    }
+
+    .nav-bar td {
+        padding: 5px 8px;
+        font-size: 0.7em;
+    }
+
+    .nav-bar a {
+        font-size:0,9em;
+    }
+}
+
+
+/* Footer styles neðsta taflan í base.html*/
+.footer {
+    max-width: 860px;
+    width: 100%;
+    background-color: #d7dbe2; /* Light background color */
+    padding: 7px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    margin: 20px auto;
+    font-size: 0.9em;
+    color: #5a5858;
+    border-radius: 8px;
+    border-top: 1px solid #ddd;
+}
+
+.footer h5 {
+    margin: 0;
+    padding: 0;
+}
+
+
+@media (max-width: 768px) {
+    .footer {
+        
+        padding: 10px;
+        font-size: 0.8em; /* Adjust font size for smaller screens */
+    }
+
+    .footer h5 {
+        font-size: 1em;
+    }
+}
+
+
+/* Compact Table styles for the newest items - index siðan tvö nýjustu skip sýnd*/
+.updated-compact-table {
+    width: 100%;
+    max-width: 860px; /* Set the maximum width of the table */
+    margin: 20px auto; /* Center the table horizontally and add vertical margin */
+    border-collapse: collapse; /* Remove gaps between table cells */
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for the table */
+    display: block; /* Make the table a block-level element to allow centering */
+    font-size: 0.9em; /* Make font size smaller */
+}
+
+.updated-compact-table td {
+    max-width: 420px; /* Set the maximum width for table cells */
+    padding: 6px; /* Reduce padding inside table cells */
+    text-align: left; /* Left align text */
+    border-bottom: 1px solid #ddd; /* Light border between rows */
+    vertical-align: top; /* Align the cells to the top */
+    word-wrap: break-word; /* Ensure long words break and wrap within the cell */
+    line-height: 1.2; /* Reduce line height */
+}
+
+.updated-compact-table th {
+    padding: 6px; /* Reduce padding inside table cells */
+    text-align: left; /* Left align text */
+    font-size: 0.9em; /* Make font size smaller */
+    line-height: 1.2; /* Reduce line height */
+}
+
+.updated-compact-table img {
+    max-height: 220px; /* Reduce maximum height for images */
+    width: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners for images */
+}
+
+/* Make entire table cell clickable */
+.updated-compact-table .clickable-cell {
+    cursor: pointer;
+    height: 100%; /* Make cell height 100% to match image height */
+}
+
+.updated-compact-table .clickable-cell table {
+    height: 100%; /* Make inner table height 100% to match image height */
+}
+
+.updated-compact-table .clickable-cell tr {
+    height: 100%; /* Make inner table rows height 100% to match image height */
+}
+
+.updated-compact-table .clickable-cell:hover {
+    background-color: #eaf4fc; /* Light blue background on hover */
+}
+
+a.table-link {
+    text-decoration: none; /* Remove underline from links */
+    color: #28a745; /* Green text color */
+    display: block; /* Allow the link to cover the entire cell */
+    width: 100%;
+    height: 100%;
+    padding: 6px; /* Reduce padding inside the link */
+    font-weight: bold; /* Bold text for nafn */
+    font-size: 1em; /* Make font size smaller */
+}
+
+@media (max-width: 768px) {
+    .updated-compact-table td, .updated-compact-table th {
+        padding: 4px; /* Further reduce padding for smaller screens */
+        font-size: 0.75em; /* Make font size even smaller for smaller screens */
+    }
+
+    a.table-link {
+        padding: 4px; /* Further reduce padding for smaller screens */
+        font-size: 0.75em; /* Make font size even smaller for smaller screens */
+    }
+}
+
+/* Ensure images in descriptions also adapt to customer screens */
+.img-responsive {
+    max-width: 100%; /* Ensures the image scales down with the screen */
+    height: auto; /* Maintains the aspect ratio */
+    max-width: 860px; /* Ensures the image does not exceed 800px */
+    width: auto; /* Automatically adjusts the width */
+    display: block; /* Makes sure image doesn't exceed the container width */
+    margin: 0 auto; /* Center-align the image horizontally */
+}
+
+
+/* myndir í lýsingu fyrir vörur aðlagist einnig skjám viðskipatavina*/
+.img-responsive {
+    max-width: 100%; /* Ensures the image scales down with the screen */
+    height: auto; /* Maintains the aspect ratio */
+    max-width: 860px; /* Ensures the image does not exceed 800px */
+    width: auto; /* Automatically adjusts the width */
+    display: block; /* Makes sure image doesn't exceed the container width */
+    margin: 0 auto; /* Center-align the image horizontally */
+}
+
+

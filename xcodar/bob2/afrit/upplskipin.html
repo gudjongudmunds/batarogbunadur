@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ nr }}
+{% endblock %}
+
+{% block css_files %}
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+        <td>{{ nr }}</td>
+        </tr>
+        <tr>
+        <td>{{ nafn }}</td>
+        </tr>
+        <tr>
+        <td><p>Skipið er staðsett á </p>{{ stadur }}</td>
+        </tr>
+        <tr>
+        <td>{{ sjalfst }}</td>
+        </tr>
+    </table>
+  
+    
+{% endblock %}

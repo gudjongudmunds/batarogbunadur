@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+    {% block title %}
+    {% endblock %}
+    </title>
+    <link rel='stylesheet' href=''>
+    {% block css_files %}
+    {% endblock %}
+</head>
+<body>
+    <h1>Heimasíða Báta og búnaðar ehf.</h1>
+    <table>
+        <tr>
+            <td><img src='{% static 'skip/images/logobob150.jpg' %}' alt='Bátar og búnaður'></td>
+            <td><a href='{% url 'index20' %}'><h3>Forsíða</h3></a></td>
+            <td><a href=''><h3> | </h3></a></td>
+            <td><a href='{% url 'index20' %}'><h3>Söluskrá fyrir skip</h3></a></td>
+        </tr>
+    </table>
+    <br>
+  {% block content %}
+  {% endblock %}
+</body>
+<footer>
+    <table>
+        <tr>
+            <td><a href='{% url 'index20' %}'><h3>BÁTAR OG BÚNAÐUR ehf.</h3></a></td>
+            <td><h3> | </h3></a></td>
+            <td><a href=''><h3>Guðjón Guðmundsson löggiltur fasteigna-, fyrirtækja- og skipasali</h3></a></td>
+            <td><h3> | </h3></a></td>
+            <td><a href=''><h3>skip@batarogbunadur.is</h3></a></td>
+        </tr>
+    </table>
+</footer>
+</html>

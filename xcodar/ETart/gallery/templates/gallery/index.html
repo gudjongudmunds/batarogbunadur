@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{% endblock %}
+{% block css_files %}
+    <link rel='stylesheet' href='{% static 'gallery/post.css' %}'/>
+    <link rel='stylesheet' href='{% static 'gallery/index.css' %}'/>
+{% endblock %}
+{% block content %}
+<section id='welcome'>
+    <header>
+        <img src='{% static 'gallery/images/ETmarket.jpg' %}' alt='ETart - Ellý Tryggva'/>
+        <h2>Ellý Tryggva</h2>
+    </header>
+    <p>Þetta er síðan mín sem sýnir þau verk sem ég hef unnið.</p>
+</section>
+<section id='latest-posts'>
+    <h2>Þrjú nýjustu verkin mín:</h2>
+    <ul>
+        {% for ve in verkin %}
+        {% include 'gallery/includes/verk.html' %}
+        {% endfor %}
+    </ul>
+</section>
+<section id='about'>
+    <h3>Hver er ég Ellý Tryggva?</h3>
+    <h4>Ég er hjúkrunarfræðingur og starfa sem aðstoðardeildarstjóri á Bráðamóttöku Landsspítala í Fossvogi.  
+        Þetta er það sem ég geri í frístundum og ég elska það.  Ég er með vinnustofu að Vagnhöfða í Reykjavík 
+        ásamt nokkrum snillingum sem deila með mér sama áhugamáli.</h4>
+    <h4>Ef þig langar að skoða verkin mín sendu mér þá <a href=''> línu.</a></h4>
+</section>
+{% endblock %}

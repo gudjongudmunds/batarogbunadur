@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Söluskrá fyrir skip
+{% endblock %}
+
+{% block css_files %}
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1>Söluskrá fyrir skip</h1>
+        <table>
+            {% for sk in sklist %}
+            <tr>{% include 'skip/includes/skip.html' %}</tr>
+            {% endfor %}  
+        </table>
+    </section>
+{% endblock %}

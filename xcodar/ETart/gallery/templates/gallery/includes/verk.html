@@ -1,0 +1,12 @@
+{% load static %}
+<li>
+    <article class='post'>
+        <a href='{% url 'verklys_sida' ve.slug %}'>
+            <img src='{% static 'gallery/images/'|add:ve.lmynd %}' alt='{{ ve.titill }}'/>
+            <div class='post__content'>
+                <h3>{{ ve.titill }}</h3>
+                <p>{{ ve.kynning }}</p>
+            </div>
+        </a>
+    </article>
+</li>

@@ -1,0 +1,34 @@
+{% extends 'heim/base.html' %}
+{% load static %}
+
+{% block meta_description %}
+Þetta er síða fyrir Báta og búnað skipasölu.  
+Hér er hægt að skrá bát á söluskrá hjá okkur.
+{% endblock %}
+
+{% block title %}
+Skráning á bát
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'bobstyle.css' %}">
+{% endblock %}
+   
+{% block content1 %}
+    <div class="form-container">
+        <h3>Skráðu bát hér:</h3>
+        <h5>{{ message_upph }}</h5>
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Skrá!</button>  
+        </form>          
+        <h5>{{ message_uppl }}</h5>
+    </div>
+{% endblock %}
+
+{% block content2 %}
+{% endblock %}
+
+{% block content3 %}
+{% endblock %}

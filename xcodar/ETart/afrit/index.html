@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Bátar og búnaður
+{% endblock %}
+
+{% block css_files %}
+{% endblock %}
+
+{% block content %}
+<section id='latest-post'>
+  <h2>Nýjustu eignir</h2>
+    <ul>
+      {% for sk in nyskip %}
+      {% include 'skip/includes/skip.html' %}
+      {% endfor %}
+    </ul>
+</section>
+{% endblock %}

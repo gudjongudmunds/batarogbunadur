@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Gallery
+{% endblock %}
+{% block css_files %}
+    <link rel='stylesheet' href='{% static 'gallery/post.css' %}'/>
+    <link rel='stylesheet' href='{% static 'gallery/all-posts.css' %}'/>
+{% endblock %}
+{% block content %}
+<section id='all-posts'>
+    <h2>Verkin mín</h2>
+        <ul>
+            {% for ve in galler %}
+            {% include 'gallery/includes/verk.html' %}
+            {% endfor %}
+        </ul>
+</section>
+{% endblock %}

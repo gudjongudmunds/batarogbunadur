@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Listi fyrir ETart verk
+{% endblock %}
+{% block css_files %}
+
+{% endblock %}
+{% block content %}
+    <h2>Verkefni</h2>
+    <ul>
+        {% for gal in object_list %}
+        <li><a href='{% url 'lysing_sida' gal.pk %}'>{{ gal.date }} {{ gal.titill }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

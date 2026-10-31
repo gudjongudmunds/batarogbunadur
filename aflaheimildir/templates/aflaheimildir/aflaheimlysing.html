@@ -1,0 +1,51 @@
+{% extends 'heim/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block meta_description %}
+Þetta er síða fyrir Báta og búnað skipasölu.  
+Hér er lýsing á aflaheimildum sem eru til sölu hjá okkur.
+{% endblock %}
+
+{% block title %}
+{{ aflaheim.nr }}-{{ aflaheim.nafn }}
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'bobstyle.css' %}">
+{% endblock %}
+   
+{% block content1 %}
+<h2 align='center'>Upplýsingar um aflaheimildir: {{ aflaheim.nafn }}</h2>
+<h4 align='center'><i>Síðast uppfært þann {{ aflaheim.uppf_dags|date:'d.m.Y' }}</i></h4>
+        <table class="short-table">    
+            <tr><td colspan='2'><img src="{{ aflaheim.lmynd.url }}" class="table-image img-responsive"></td></tr>
+            <tr><td>Aflaheimildir: </td><td>{{ aflaheim.tegundaflah }}</td></tr>
+            <tr><td>Af bát nr.: </td><td>{{ aflaheim.bat_nr }}</td></tr>
+            <tr><td>Tegund: </td><td>{{ aflaheim.tegsjavaraf }}</td></tr>
+            {% if aflaheim.magn_hlutd %}
+            <tr><td>Hlutdeild til sölu: </td><td>{{ aflaheim.magn_hlutd }} </td></tr>
+            {% endif %}
+            <tr><td>{{ aflaheim.tegundaflah }} magn: </td><td>{{ aflaheim.magn_aflmark }} tonn. {% if aflaheim.magn_hlutd %} Áætlað magn miðað við síðasta fiskveiðiár. {% endif %}</td></tr>
+            <tr><td>Samtals verð (ISK): </td><td>{{ aflaheim.verdsamt|format_number|default:'Óskað er eftir tilboði í aflaheimildir!' }}</td></tr>
+            {% if aflaheim.verdsamt %}
+            <tr><td>Verð per tonn: </td><td>{{ aflaheim.verdptonn|format_number }}</td></tr>
+            {% endif %}  
+        </table>
+        <table class="short-table">
+            <tr><td colspan="2"><h3>Athugasemd:</h3></td></tr>
+            <tr><td colspan="2">{{ aflaheim.athsemd }}</td></tr>
+        </table>
+        {% include 'includes/framogtilbaka.html' %}
+    <script src="{% static 'scripts/js.js' %}"></script>
+{% endblock %}
+
+{% block content2 %}
+{% endblock %}
+
+{% block content3 %}
+        <table class="short-table">
+            <tr><td><h3>Fyrirspurn:</h3></td></tr>
+            <tr><td><a href='{% url 'aflaheimfyrirspurn_sida' aflaheim.slug %}' class="detail-link">Sendu inn fyrirspurn um ofangreindar aflaheimildir: {{ aflaheim.nafn }}!</a></td></tr>
+        </table>
+{% endblock %}

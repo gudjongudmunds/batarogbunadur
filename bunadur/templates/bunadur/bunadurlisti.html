@@ -1,0 +1,67 @@
+{% extends 'heim/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block meta_description %}
+Þetta er síða fyrir Báta og búnað skipasölu.  
+Hér er listi yfir allan búnað í skip sem er til sölu hjá okkur.
+{% endblock %}
+
+{% block title %}
+Söluskrá fyrir búnað
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'bobstyle.css' %}">
+{% endblock %}
+
+{% block content1 %}
+<h1 align='center'>Söluskrá búnaður</h1>
+{% if object_list %}
+    <table class="compact-table-bunadur">
+        <thead>
+            <tr>
+            <td></td>
+            <td><a href="?order_by=nafn{% if request.GET.order_by == 'nafn' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Búnaður</a></td>
+            <td><a href="?order_by=tegundbun{% if request.GET.order_by == 'tegundbun' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Tegund</a></td>
+            <td><a href="?order_by=stadsetn{% if request.GET.order_by == 'stadsetn' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Staðsetning</a></td>
+            <td><a href="?order_by=verd_bun{% if request.GET.order_by == 'verd_bun' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Verð (ISK)</a></td>
+            <td></td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bun in object_list %}
+        <tr class="clickable-row" data-href="{% url 'bunadurlysing_sida' bun.slug %}">
+            <td><img src="{{ bun.lmynd.url }}" class="table-image img-responsive"></td>
+            <td><a href='{% url 'bunadurlysing_sida' bun.slug %}' class="detail-link">{{ bun.nafn }}</a></td>
+            <td>{{ bun.tegundbun }}</td>
+            <td>{{ bun.stadsetn }}</td>
+            <td>{{ bun.verd_bun|format_number|default:'Tilboð!' }}</td>
+            <td>{{ bun.att }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table> 
+{% else %}
+<table class="compact-table-bunadur">
+    <thead>
+        <tr>
+        <td></td>
+        <td><a href="?order_by=nafn{% if request.GET.order_by == 'nafn' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Búnaður</a></td>
+        <td><a href="?order_by=tegundbun{% if request.GET.order_by == 'tegundbun' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Tegund</a></td>
+        <td><a href="?order_by=stadsetn{% if request.GET.order_by == 'stadsetn' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Staðsetning</a></td>
+        <td><a href="?order_by=verd_bun{% if request.GET.order_by == 'verd_bun' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Verð (kr)</a></td>
+        <td></td>
+        </tr>
+    </thead>
+    <tr><td><h4>Enginn búnaður á söluskrá sem stendur!</h4></td></tr>
+</table>
+{% endif %}
+<script src="{% static 'scripts/js.js' %}"></script>
+{% endblock %}
+
+{% block content2 %}
+{% endblock %}
+
+{% block content3 %}
+{% endblock %}

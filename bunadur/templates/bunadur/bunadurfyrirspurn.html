@@ -1,0 +1,32 @@
+{% extends 'heim/base.html' %}
+{% load static %}
+
+{% block meta_description %}
+Þetta er síða fyrir Báta og búnað skipasölu.  
+Hér er hægt að skrá fyrirspurn um búnað sem er á söluskrá.
+{% endblock %}
+
+{% block title %}
+Fyrirspurn um {{ form.boat_name.value }}
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'bobstyle.css' %}">
+{% endblock %}
+   
+{% block content1 %}
+<div class="form-container">
+    <h3>Fyrirspurn um {{ form.boat_name.value }}</h3>
+    <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>Send</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block content2 %}
+{% endblock %}
+
+{% block content3 %}
+{% endblock %}

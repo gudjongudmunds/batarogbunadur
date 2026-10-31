@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{% block meta_description %}Þetta er grunnsíða fyrir Báta og búnað skipasölu.{% endblock %}">
+  <title>{% block title %}{% endblock %} - Bátar og búnaður ehf.</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'bobstyle.css' %}">
+  <style>
+    .limited-height {
+      max-height: 120px; /* Ensures the image height does not exceed 200px */
+      width: auto; /* Maintains the aspect ratio */
+    }
+
+    #cookie-notice {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+
+    #cookie-notice p {
+        display: inline;
+        margin-right: 10px;
+    }
+
+    #accept-cookies {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+  </style>
+  <script src="{% static 'js/form_script.js' %}"></script>
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function goForward() {
+      window.history.forward();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var cookieNotice = document.getElementById('cookie-notice');
+        var acceptButton = document.getElementById('accept-cookies');
+
+        if (!localStorage.getItem('cookiesAccepted')) {
+            cookieNotice.style.display = 'block';
+        }
+
+        acceptButton.addEventListener('click', function() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieNotice.style.display = 'none';
+        });
+    });
+  </script>
+  {% block css_files %}
+  {% endblock %}
+</head>
+<body>
+  {% include 'includes/_cookie_notice.html' %}
+  
+  <table class="banner-table">
+    <tr>
+      <td style="width:35%">
+        <table class="inner-content-table">
+          <tr>
+            <td>
+              <h4>Viltu skrá:<br>
+              <a href="{% url 'bataskraning_sida' %}">Bát</a> |
+              <a href="{% url 'bunadurskraning_sida' %}">Búnað</a> |
+              <a href="{% url 'aflaheimskraning_sida' %}">Aflaheimildir</a>
+              </h4>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4><a href="{% url 'fyrirspurn_sida' %}">Hafðu samband!</a></h4>
+            </td>
+          </tr>
+         </table>
+        </td>
+        <td>
+         <table class="inner-content-table">
+          <tr>   
+            <td style="width:30%">
+            <a href="{% url 'index_sida' %}"><img src="{% static 'images/lg_bob_vefur.jpg' %}" alt="Bátar og búnaður ehf." class="limited-height"></a>
+            </td>
+          </tr>
+          </table>
+        </td>
+        <td style="width:35%">
+        <table class="inner-content-table">
+          <tr>
+              <td></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  </head> 
+    <header>
+      <table class="nav-bar">
+        <tr>
+          <td style="text-align:left;">
+            <nav>
+              <a href="{% url 'baturlisti_sida' %}" class="{% if '/batar/' in request.path %}active{% endif %}">Bátar</a>|
+              <a href="{% url 'bunadurlisti_sida' %}" class="{% if '/bunadur/' in request.path %}active{% endif %}">Búnaður</a>|
+              <a href="{% url 'aflaheimlisti_sida' %}" class="{% if '/aflaheimildir/' in request.path %}active{% endif %}">Aflaheimildir</a>
+            </nav>
+          </td>
+          <td>
+            <button onclick="goBack()" class="nav-button button-green">Bakborði!</button>
+            <button onclick="goForward()" class="nav-button button-blue">Stjórnborði!</button>
+          </td>
+          <td style="text-align:right;">
+            <nav>
+              <a href="{% url 'gjaldskra_sida' %}" class="{% if '/gjaldskra/' in request.path %}active{% endif %}">Gjaldskrá</a>|
+              <a href="{% url 'umokkur_sida' %}" class="{% if '/umokkur/' in request.path %}active{% endif %}">Um okkur</a>|
+              <a href="{% url 'index_sida' %}" class="{% if '/' == request.path %}active{% endif %}">Heim</a>
+            </nav>
+          </td>
+        </tr>
+      </table>      
+    </header>
+</body>
+{% block content1 %}
+{% endblock %}
+
+{% block content2 %}
+{% endblock %}
+
+{% block content3 %}
+{% endblock %}
+<table class="footer">
+  <tr>
+    <td style='width: 100%'>
+      <h5>
+        <a href='{% url 'index_sida' %}'>Bátar og búnaður ehf.</a> | 
+        Guðjón Guðmundsson löggiltur fasteigna-, fyrirtækja- og skipasali | 
+        <a href='mailto:skip@batarogbunadur.is'>skip@batarogbunadur.is</a> | 
+        <a href='{% url 'index_sida' %}'>batarogbunadur.is</a>
+      </h5>
+    </td>
+  </tr>
+</table>
+<script src="{% static 'cookie_notice.js' %}"></script>
+</body>
+</html>

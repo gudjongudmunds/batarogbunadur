@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Titill: {{ sk.titill }}
+{% endblock %}
+
+{% block css_files %}
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <td>{{ sk.slug }} </td><td>Heiti skips: {{ sk.titill }}</td><td>Staður: {{ sk.stadur }} </td>
+        </tr>
+        <tr>
+            <td>{{ sk.dags|date:'d.m.Y' }} </td><td>Lengd:</td><td> <p>{{ sk.sttexti }}</p>:</td>
+        </tr>
+        <tr>
+            <td><img src='{% static 'skip/images/'|add:sk.mynd %}' alt={{ sk.titill }</td>
+            <td>                
+            </td>
+        </tr>
+    </table>
+    </p>{{ sk.latexti }}</p>
+    <table>
+        <tr><td><img src='{% static 'skip/images/'|add:sk.stmynd1 %}' alt={{ sk.titill }</td></tr>
+        <tr><td><img src='{% static 'skip/images/'|add:sk.stmynd2 %}' alt={{ sk.titill }</td></tr>
+        <tr><td><img src='{% static 'skip/images/'|add:sk.stmynd3 %}' alt={{ sk.titill }</td></tr>
+        <tr><td><img src='{% static 'skip/images/'|add:sk.stmynd4 %}' alt={{ sk.titill }</td></tr>
+    </table>       
+{% endblock %}

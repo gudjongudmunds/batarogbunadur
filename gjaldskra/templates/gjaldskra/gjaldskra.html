@@ -1,0 +1,54 @@
+{% extends 'heim/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block meta_description %}
+Þetta er síða fyrir Báta og búnað skipasölu.  
+Hér eru allar upplýsingar um þóknun og verð fyrir tímavinnu.
+{% endblock %}
+
+{% block title %}
+Gjaldskrá fyrir Báta og búnað ehf.
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'bobstyle.css' %}">
+{% endblock %}
+ 
+{% block content1 %}
+    <h1 align='center'>Gjaldskrá</h1>
+        {% for gs in object_list %}
+        <table class="short-table">
+            <tr><td><i>Gjaldskrá þessi gildir frá {{ gs.gildi_dags|date:'d.m.Y' }}.</i></td></tr>
+            <tr><td>Gjaldskrá miðast við almenna sölu (ekki í einkasölu). Um þóknun fyrir sölu eigna í einkasölu fer eftir nánara samkomulagi milli aðila. Skráning eigna á söluskrá er án endurgjalds.</td></tr>
+            <tr><td><b>ATH! Öll tilgreind þóknun (% og fjárhæð) hér að neðan er ÁN VSK og miðast við söluverð eigna skv. kaupsamningi. Þóknun greiðist við kaupsamning eða við afhendingu á þjónustu.</b></td></tr>
+            <tr><td><h3>Vegna báta:</h3></td></tr>
+            <tr><td>Þóknun seljanda er {{ gs.tho_bat_alms|to_percent }}.</td></tr>
+            <tr><td>Fastur kostnaður seljanda er kr. {{ gs.fk_selj|format_number }}.</td></tr>
+            <tr><td>Lágmarksþóknun er kr. {{ gs.tho_bat_lagm|format_number }}.</td></tr>
+            <tr><td>Föst þóknun kaupanda er kr. {{ gs.tho_kaup|format_number }}.</td></tr>
+            <tr><td>Verðmat á bátum án mögulegs ferðakostnaðar og annars óbeins kostnaðar er kr. {{ gs.vm_bat|format_number }}.</td></tr>
+            <tr><td><h3>Vegna búnaðar:</h3></td></tr>
+            <tr><td>Þóknun seljanda er {{ gs.tho_bun_alms|to_percent }}.</td></tr>
+            <tr><td>Lágmarksþóknun er kr. {{ gs.tho_bun_lagm|format_number }}.</td></tr>
+            <tr><td>Föst þóknun kaupanda er kr. {{ gs.tho_kaup_bun|format_number }}.</td></tr>
+            <tr><td><h3>Vegna veiðiheimilda:</h3></td></tr>
+            <tr><td>Þóknun seljanda er {{ gs.tho_vheim_alms|to_percent }}.</td></tr>
+            <tr><td>Lágmarksþóknun er kr. {{ gs.tho_vheim_lagm|format_number }}.</td></tr>
+            <tr><td>Föst þóknun kaupanda er kr. {{ gs.tho_kaup_vheim|format_number }}.</td></tr>
+            <tr><td><h3>Vegna félög/fyrirtæki:</h3></td></tr>
+            <tr><td>Þóknun seljanda er {{ gs.tho_ft|to_percent }}.</td></tr>
+            <tr><td>Lágmarksþóknun er kr. {{ gs.tho_ft_lagm|format_number }}.</td></tr>
+            <tr><td>Föst þóknun kaupanda er kr. {{ gs.tho_ft_kaup|format_number }}.</td></tr>
+            <tr><td><h3>Annað:</h3></td></tr>
+            <tr><td>Tímavinna skipa-/fasteignasala kr. {{ gs.timav_fast|format_number }} per klst.</td></tr>
+            <tr><td>Þóknun fyrir skjalafrágang, vegna eigendaskipta og/eða makaskipta, á eignum sem skipa-/fasteignasali hefur ekki haft til sölumeðferðar og aðilar hafa sjálfir komist að samkomulagi um alla þætti kaupsamnings, greiða aðilar 1/2 af þóknun skv. ofangreindri verðskrá.</td></tr>
+        </table>
+        {% endfor %}
+{% endblock %}
+
+{% block content2 %}
+{% endblock %}
+
+{% block content3 %}
+{% endblock %}

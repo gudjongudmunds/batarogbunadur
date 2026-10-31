@@ -1,0 +1,101 @@
+{% extends 'heim/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block meta_description %}
+Þetta er síða fyrir Báta og búnað skipasölu.  
+Hér er listi yfir báta sem eru á söluskrá hjá okkur.
+{% endblock %}
+
+{% block title %}
+Söluskrá fyrir báta
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'bobstyle.css' %}">
+{% endblock %}
+   
+{% block content1 %}
+<h1 align='center'>Söluskrá bátar</h1>
+<table class="search-table"> 
+    <tr>
+        <td>
+            <form align='center' method="GET" action=""> 
+                <input type="text" name="search" placeholder="Nafn á bát" value="{{ request.GET.search }}"> 
+                <button type="submit">Leita!</button>
+            </form>
+        </td>
+    </tr>
+</table>
+{% if object_list %}
+<table class="compact-table">
+    <thead>
+        <tr>
+        <td></td>
+        <td><a href="?order_by=nafn{% if request.GET.order_by == 'nafn' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Nafn</a></td> 
+        <td><a href="?order_by=tegund{% if request.GET.order_by == 'tegund' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Tegund</a></td> 
+        <td><a href="?order_by=gerd_bat{% if request.GET.order_by == 'gerd_bat' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Gerð</a></td> 
+        <td><a href="?order_by=arg_bat{% if request.GET.order_by == 'arg_bat' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Árg.</a></td> 
+        <td><a href="?order_by=br_tonn{% if request.GET.order_by == 'br_tonn' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Br.tonn</a></td> 
+        <td><a href="?order_by=lengd_bat{% if request.GET.order_by == 'lengd_bat' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Lengd(m)</a></td> 
+        <td><a href="?order_by=hradi_bat{% if request.GET.order_by == 'hradi_bat' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">gengur</a></td> 
+        <td><a href="?order_by=verd_bat{% if request.GET.order_by == 'verd_bat' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Verð (ISK)</a></td> 
+        <td></td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for bat in object_list %}
+    <tr class="clickable-row" data-href="{% url 'baturlysing_sida' bat.slug %}">
+        {% if bat.lmynd %}
+        <td><img src="{{ bat.lmynd.url }}" class="table-image img-responsive"></td>
+        {% else %}
+        <td><img src="{% static 'images/lg_bob_vefur.jpg' %}" class="table-image img-responsive"></td>
+        {% endif %}
+        <td><a href='{% url 'baturlysing_sida' bat.slug %}' class="detail-link">{{ bat.nafn }}</a></td>
+        <td> {{ bat.tegund }}</td>
+        <td>
+            {% with bat.gerd_bat|default:None as gerd_bat_value %}
+                {% if gerd_bat_value %}
+                    {{ gerd_bat_value }}
+                {% else %}
+                    {{ bat.smidast }}
+                {% endif %}
+            {% endwith %}
+        </td>        
+        <td> {{ bat.arg_bat }}</td>
+        <td> {{ bat.br_tonn|decimal_comma }} bt.</td>
+        <td> {{ bat.lengd_bat|decimal_comma }} m.</td>
+        <td> {{ bat.hradi_bat|default:"óvíst" }}</td>
+        <td>{{ bat.verd_bat|format_number|default:'Tilboð!' }}</td>
+        <td style="color: red; font-weight: bold;"> {{ bat.att|default:"" }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %} 
+<table class="compact-table">
+    <thead>
+        <tr>
+        <td></td>
+        <td><a href="?order_by=nafn{% if request.GET.order_by == 'nafn' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Nafn</a></td> 
+        <td><a href="?order_by=tegund{% if request.GET.order_by == 'tegund' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Tegund</a></td> 
+        <td><a href="?order_by=gerd_bat{% if request.GET.order_by == 'gerd_bat' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Gerð</a></td> 
+        <td><a href="?order_by=arg_bat{% if request.GET.order_by == 'arg_bat' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Árg.</a></td> 
+        <td><a href="?order_by=br_tonn{% if request.GET.order_by == 'br_tonn' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Br.tonn</a></td> 
+        <td><a href="?order_by=lengd_bat{% if request.GET.order_by == 'lengd_bat' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Lengd(m)</a></td> 
+        <td><a href="?order_by=hradi_bat{% if request.GET.order_by == 'hradi_bat' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">gengur</a></td> 
+        <td><a href="?order_by=verd_bat{% if request.GET.order_by == 'verd_bat' and request.GET.direction != 'desc' %}&direction=desc{% else %}&direction=asc{% endif %}" class="detail-link">Verð (millj)</a></td> 
+        <td></td>
+        </tr>
+    </thead>
+    <tr><td><h4>Enginn bátur með þessu nafni!</h4></td></tr>
+</table>
+{% endif %}
+<script src="{% static 'scripts/js.js' %}"></script>
+{% endblock %}
+
+{% block content2 %}
+{% endblock %}
+
+{% block content3 %}
+{% endblock %}

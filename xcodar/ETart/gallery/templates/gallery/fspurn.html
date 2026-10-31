@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Fyrirspurn 
+{% endblock %}
+{% block css_files %}
+    <link rel='stylesheet' href='{% static 'gallery/post.css' %}'/>
+    <link rel='stylesheet' href='{% static 'gallery/all-posts.css' %}'/>
+{% endblock %}
+{% block content %}
+<section id='all-posts'>
+    <h2>Fyrirspurn</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+</section>
+{% endblock %}
