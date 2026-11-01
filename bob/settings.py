@@ -31,7 +31,11 @@ SECRET_KEY = 'django-insecure-hrws)5ngjhw-co#+3l@&_^n4-g^qpbgag31=#_%69l8^v_9&(z
 DEBUG = True
 # Ofangr.lína sett við að koma heimasíðu á netið.
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "YOURUSERNAME.pythonanywhere.com",
+]
 # Ofangr. lína var sett inn til að koma bob á netið.
 
 # Application definition
