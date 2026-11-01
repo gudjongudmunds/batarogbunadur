@@ -34,7 +34,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "YOURUSERNAME.pythonanywhere.com",
+    "3falltdev.pythonanywhere.com",
 ]
 # Ofangr. lína var sett inn til að koma bob á netið.
 
